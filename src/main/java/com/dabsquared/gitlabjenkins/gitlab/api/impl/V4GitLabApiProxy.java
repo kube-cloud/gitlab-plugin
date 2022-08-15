@@ -211,7 +211,7 @@ interface V4GitLabApiProxy extends GitLabApiProxy {
     @Path("/projects/{projectId}/repository/branches")
     @Override
     List<Branch> getBranches(@PathParam("projectId") @Encoded String projectId);
-
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/projects/{projectId}/repository/branches/{branch}")
@@ -219,6 +219,12 @@ interface V4GitLabApiProxy extends GitLabApiProxy {
     Branch getBranch(@PathParam("projectId") @Encoded String projectId,
                      @PathParam("branch") @Encoded String branch);
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/projects/{projectId}/repository/tags")
+    @Override
+    List<Tag> getTags(@PathParam("projectId") @Encoded String projectId);
+    
     @HEAD
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/user")

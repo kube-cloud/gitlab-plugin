@@ -28,6 +28,7 @@ import com.dabsquared.gitlabjenkins.gitlab.api.model.MergeRequest;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.Pipeline;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.Project;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.ProjectHook;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Tag;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.User;
 import com.dabsquared.gitlabjenkins.gitlab.hook.model.State;
 
@@ -221,13 +222,19 @@ interface V3GitLabApiProxy extends GitLabApiProxy {
     @Path("/projects/{projectId}/repository/branches")
     @Override
     List<Branch> getBranches(@PathParam("projectId") @Encoded String projectId);
-
+    
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/projects/{projectId}/repository/branches/{branch}")
     @Override
     Branch getBranch(@PathParam("projectId") @Encoded String projectId,
                      @PathParam("branch") @Encoded String branch);
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/projects/{projectId}/repository/tags")
+    @Override
+    List<Tag> getTags(@PathParam("projectId") @Encoded String projectId);
 
     @HEAD
     @Produces(MediaType.APPLICATION_JSON)

@@ -1,14 +1,28 @@
 package com.dabsquared.gitlabjenkins.gitlab.api.impl;
 
 
-import com.dabsquared.gitlabjenkins.gitlab.api.GitLabClient;
-import com.dabsquared.gitlabjenkins.gitlab.api.GitLabClientBuilder;
-import com.dabsquared.gitlabjenkins.gitlab.api.model.*;
-import com.dabsquared.gitlabjenkins.gitlab.hook.model.State;
-
-import javax.ws.rs.NotFoundException;
 import java.util.List;
 import java.util.NoSuchElementException;
+
+import javax.ws.rs.NotFoundException;
+
+import com.dabsquared.gitlabjenkins.gitlab.api.GitLabClient;
+import com.dabsquared.gitlabjenkins.gitlab.api.GitLabClientBuilder;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Awardable;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Branch;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.BuildState;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Group;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Label;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.MergeRequest;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.OrderType;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Pipeline;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Project;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.ProjectHook;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.ProjectVisibilityType;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.SortType;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Tag;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.User;
+import com.dabsquared.gitlabjenkins.gitlab.hook.model.State;
 
 
 final class AutodetectingGitLabClient implements GitLabClient {
@@ -293,7 +307,7 @@ final class AutodetectingGitLabClient implements GitLabClient {
                 }
             });
     }
-
+    
     @Override
     public Branch getBranch(final String projectId, final String branch) {
         return execute(
@@ -305,6 +319,27 @@ final class AutodetectingGitLabClient implements GitLabClient {
             });
     }
 
+    /* (non-Javadoc)
+     * @see com.dabsquared.gitlabjenkins.gitlab.api.GitLabClient#getTags(java.lang.String)
+     */
+    @Override
+    public List<Tag> getTags(String projectId) {
+    	
+    	// Execute Query
+    	return execute(new GitLabOperation<List<Tag>>() {
+    		
+    		/* (non-Javadoc)
+    		 * @see com.dabsquared.gitlabjenkins.gitlab.api.impl.AutodetectingGitLabClient.GitLabOperation#execute(com.dabsquared.gitlabjenkins.gitlab.api.GitLabClient)
+    		 */
+    		@Override
+    		List<Tag> execute(GitLabClient client) {
+    			
+    			// Return Tags
+    			return client.getTags(projectId);
+    		}
+    	});
+    }
+    
     @Override
     public User getCurrentUser() {
         return execute(

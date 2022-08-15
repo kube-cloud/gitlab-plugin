@@ -51,6 +51,8 @@ public interface GitLabClient {
     List<Branch> getBranches(String projectId);
 
     Branch getBranch(String projectId, String branch);
+    
+    List<Tag> getTags(String projectId);
 
     User getCurrentUser();
 

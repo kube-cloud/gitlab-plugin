@@ -157,10 +157,20 @@ final class ResteasyGitLabClient implements GitLabClient {
     public List<Branch> getBranches(String projectId) {
         return api.getBranches(projectId);
     }
-
+    
     @Override
     public Branch getBranch(String projectId, String branch) {
         return api.getBranch(projectId, branch);
+    }
+
+    /* (non-Javadoc)
+     * @see com.dabsquared.gitlabjenkins.gitlab.api.GitLabClient#getTags(java.lang.String)
+     */
+    @Override
+    public List<Tag> getTags(String projectId) {
+    	
+    	// Return Tags
+    	return api.getTags(projectId);
     }
 
     @Override
