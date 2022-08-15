@@ -14,9 +14,11 @@ public class Project {
     private Integer id;
     private String name;
     private Namespace namespace;
+    private String pathWithNamespace;
     private String webUrl;
     private String sshUrlToRepo;
     private String httpUrlToRepo;
+    private String description;
 
     public Integer getId() {
         return id;
@@ -40,6 +42,14 @@ public class Project {
 
     public void setNamespace(Namespace namespace) {
         this.namespace = namespace;
+    }
+
+    public String getPathWithNamespace() {
+        return pathWithNamespace;
+    }
+
+    public void setPathWithNamespace(String pathWithNamespace) {
+        this.pathWithNamespace = pathWithNamespace;
     }
 
     public String getWebUrl() {
@@ -66,7 +76,21 @@ public class Project {
         this.httpUrlToRepo = httpUrlToRepo;
     }
 
-    @Override
+    /**
+	 * @return the description
+	 */
+	public String getDescription() {
+		return description;
+	}
+
+	/**
+	 * @param description the description to set
+	 */
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -103,6 +127,8 @@ public class Project {
             .append("webUrl", webUrl)
             .append("sshUrlToRepo", sshUrlToRepo)
             .append("httpUrlToRepo", httpUrlToRepo)
+            .append("pathWithNamespace", pathWithNamespace)
+            .append("description", description)
             .toString();
     }
 }
