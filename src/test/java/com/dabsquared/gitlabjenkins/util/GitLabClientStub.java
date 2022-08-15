@@ -9,6 +9,7 @@ import com.dabsquared.gitlabjenkins.gitlab.api.model.BuildState;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.Group;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.OrderType;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.SortType;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Tag;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.Label;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.MergeRequest;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.Pipeline;
@@ -146,7 +147,12 @@ class GitLabClientStub implements GitLabClient {
     public Branch getBranch(String projectId, String branch) {
         return null;
     }
-
+    
+    @Override
+    public List<Tag> getTags(String projectId) {
+    	return null;
+    }
+    
     @Override
     public User getCurrentUser() {
         return null;

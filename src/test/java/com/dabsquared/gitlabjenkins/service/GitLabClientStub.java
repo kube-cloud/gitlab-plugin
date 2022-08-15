@@ -15,6 +15,7 @@ import com.dabsquared.gitlabjenkins.gitlab.api.model.BuildState;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.Group;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.OrderType;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.SortType;
+import com.dabsquared.gitlabjenkins.gitlab.api.model.Tag;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.Label;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.MergeRequest;
 import com.dabsquared.gitlabjenkins.gitlab.api.model.Pipeline;
@@ -55,7 +56,17 @@ class GitLabClientStub implements GitLabClient {
     public List<Branch> getBranches(String projectId) {
         return getData(projectId, Branch.class);
     }
-
+    
+    /* (non-Javadoc)
+     * @see com.dabsquared.gitlabjenkins.gitlab.api.GitLabClient#getTags(java.lang.String)
+     */
+    @Override
+    public List<Tag> getTags(String projectId) {
+    	
+    	// Build and Return Tag Datas
+    	return getData(projectId, Tag.class);
+    }
+    
     @Override
     public List<Label> getLabels(String projectId) {
         return getData(projectId, Label.class);
